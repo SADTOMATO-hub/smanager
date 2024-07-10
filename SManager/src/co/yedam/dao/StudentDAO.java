@@ -16,6 +16,64 @@ import co.yedam.vo.StudentVo;
 public class StudentDAO extends DAO{
 	List<StudentVo> list = new ArrayList<>(); 
 	PreparedStatement psmt;
+	//삭제기능
+	public boolean deleteStudent(String sno) {
+		conn = getConn();
+		String sql = "delete tbl_student ";
+		sql += "where student_no = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, sno);
+			int r = psmt.executeUpdate();
+			if(r==1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	//단건조회
+	public int selectExists(String sno) {
+		conn = getConn();
+		String sql = "select count(1) from tbl_student";
+		sql += "      where student_no = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, sno);
+			re = psmt.executeQuery();
+			if(re.next()) {
+				return re.getInt(1);/*가지고 온 컬럼의 처리된 건수 0 or 1*/
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;/*그런거 없다*/
+	}
+	//수정기능 
+	public boolean updateStudent(StudentVo svo) {
+		String sql = "update tbl_student ";
+		sql += "   set  student_name = '?', ";
+		sql += "        student_phone = '?', ";
+		sql += "        address = '?' ";
+		sql += "where student_no = '?'";
+		conn = getConn();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, svo.getStudentName());
+			psmt.setString(2, svo.getStudentPhone());
+			psmt.setString(3, svo.getAddress());
+			psmt.setString(4, svo.getStudentNo());
+			
+			int r = psmt.executeUpdate();
+			if(r==1) {
+				return true;//정상 처리
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false; //비정상 처리
+	}
 	//등록기능
 	public boolean insertStudent(StudentVo svo) {
 			String sql = "insert into tbl_student (student_no, student_name, student_phone, address)";
