@@ -13,10 +13,10 @@ public class DAO {
 	ResultSet re;
 
 	public Connection getConn() {
-		String url = "jdbc:oracle:thin:@192.168.0.28:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:xe";
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String user = "jsp";
-		String password = "jsp";
+		String user = "teacher";
+		String password = "teacher";
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, password);// db에 접속하는 역할

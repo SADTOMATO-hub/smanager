@@ -19,7 +19,6 @@ public class StudentControl {
 			System.out.println("1.학생목록 2.등록 3.수정 4.삭제 5.종료");
 			System.out.print("선택 > ");
 			int menu = Integer.parseInt(sc.nextLine());
-
 			switch (menu) {
 			case 1:
 				studentList();
