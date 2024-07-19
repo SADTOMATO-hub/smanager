@@ -10,16 +10,38 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.Service.BoardService;
 import com.yedam.Service.BoardServiceImpl;
 import com.yedam.common.Control;
+import com.yedam.common.PageDTO;
+import com.yedam.common.SearchDTO;
 import com.yedam.vo.BoardVO;
 
 public class BoardListControl implements Control {
 
 	@Override
-	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("myName", "김감치");
+	public void exec(HttpServletRequest req, HttpServletResponse resp) //
+			throws ServletException, IOException {
+		
+		String page = req.getParameter("page");
+		page = page == null ? "1" : page;
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
+		
+		SearchDTO search = new SearchDTO();
+		search.setSearchCondition(sc);
+		search.setKeyword(kw);
+		search.setPage(Integer.parseInt(page));
+		
+		 
+		req.setAttribute("myName", "토마토");
 		BoardService svc = new BoardServiceImpl();
-		List<BoardVO> list = svc.boardList();
+		List<BoardVO> list = svc.boardList(search);
 		req.setAttribute("boardList", list);
+		
+		//paging.
+		int totalCnt = svc.totalCount(search);
+		PageDTO pageDTO = new PageDTO(Integer.parseInt(page), totalCnt);
+		req.setAttribute("paging", pageDTO);
+		req.setAttribute("paging2", search);
+		
 		req.getRequestDispatcher("WEB-INF/JSP/boardList.jsp")//
 				.forward(req, resp); // 페이지 재지정.
 	}

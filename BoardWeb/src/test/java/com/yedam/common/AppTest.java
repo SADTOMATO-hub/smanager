@@ -1,11 +1,7 @@
 package com.yedam.common;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.yedam.Service.BoardService;
 import com.yedam.Service.BoardServiceImpl;
-import com.yedam.mapper.BoardMapper;
-import com.yedam.vo.BoardVO;
 
 public class AppTest {
 	public static void main(String[] args) {
@@ -15,8 +11,16 @@ public class AppTest {
 //		
 //		System.out.println("START");
 //
-//		BoardService svc = new BoardServiceImpl();
-//		svc.boardList().forEach(System.out::println);
+		BoardService svc = new BoardServiceImpl();
+//		svc.boardList(9).forEach(System.out::println);
+//		System.out.println("끝");
+		
+		SearchDTO search = new SearchDTO();
+		search.setPage(10);
+		search.setSearchCondition("TW");
+		search.setKeyword("aaa");
+		
+		svc.boardList(search).forEach(System.out::println);
 		
 //		BoardVO brd = new BoardVO();
 //		brd.setTitle("매퍼테스트");

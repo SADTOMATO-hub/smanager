@@ -1,12 +1,13 @@
 <%@page import="com.yedam.vo.BoardVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
-<h3>게시판 상세</h3>
 <%
 	BoardVO board = (BoardVO) request.getAttribute("board");
 %>
-<form action="removeBoard.do">
+<h3>수정 페이지</h3>
+	<form action="updateBoard.do">
 <input type="hidden" name="bno" value="<%=board.getBoardNo() %>">
 	<table class="table">
 		<tr>
@@ -15,11 +16,11 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td colspan="3"><%=board.getTitle() %></td>
+		<td><input class="form-control" type="text" name="title" value=<%=board.getTitle() %>></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><%=board.getContent() %></td>
+			<td><textarea class="form-control" name="content"><%=board.getContent() %></textarea></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -27,18 +28,10 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
-			<input class="btn btn-danger" type="submit" value="삭제화면"> 
-			<button class="btn btn-warning" type="button">수정화면</button>
+			<input class="btn btn-danger" type="submit" value="수정 확인"> 
+			<button class="btn btn-warning" type="reset">취소</button>
 			</td>
 		</tr>
 	</table>
 </form>
-
-<script>
-	document.querySelector('form>table button.btn.btn-warning')
-	.addEventListener('click', function(e){
-		location.href = 'modifyBoard.do?bno=<%=board.getBoardNo() %>';
-	});
-</script>
-
 <%@ include file="../includes/footer.jsp"%>
