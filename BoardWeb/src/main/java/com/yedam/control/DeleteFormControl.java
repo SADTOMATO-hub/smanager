@@ -15,14 +15,15 @@ public class DeleteFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		
 		BoardService svc = new BoardServiceImpl();
 		if(svc.removeBoard(Integer.parseInt(bno))) {
 			// 목록으로 이동
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page=" + page);
 		}else {
 			// 삭제페이지로 이동
-			resp.sendRedirect("removeBoard.do?bno" + bno);
+			resp.sendRedirect("removeBoard.do?bno=" + bno);
 		}
 	}
 

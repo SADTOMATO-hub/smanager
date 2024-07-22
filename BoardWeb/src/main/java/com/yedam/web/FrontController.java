@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.ActionControll;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.Board;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.DeleteFormControl;
+import com.yedam.control.LoginControl;
+import com.yedam.control.LoginForm;
+import com.yedam.control.LogoutControl;
 import com.yedam.control.ModifyForm;
 import com.yedam.control.RemoveForm;
 import com.yedam.control.StudentListControl;
@@ -52,6 +56,13 @@ public class FrontController extends HttpServlet {
 		//수정 기능
 		map.put("/modifyBoard.do", new ModifyForm());
 		map.put("/updateBoard.do", new UpdateControl());
+		//태그연습
+		map.put("/action.do", new ActionControll());
+		//로그인 기능
+		map.put("/loginForm.do", new LoginForm());
+		map.put("/login.do", new LoginControl());
+		//로그아웃 기능
+		map.put("/logout.do", new LogoutControl());
 	}
 
 	@Override
