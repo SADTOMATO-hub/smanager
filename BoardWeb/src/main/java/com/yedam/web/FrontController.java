@@ -21,6 +21,7 @@ import com.yedam.control.DeleteFormControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginForm;
 import com.yedam.control.LogoutControl;
+import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyForm;
 import com.yedam.control.RemoveForm;
 import com.yedam.control.StudentListControl;
@@ -63,6 +64,8 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new LoginControl());
 		//로그아웃 기능
 		map.put("/logout.do", new LogoutControl());
+		//관리자 기능
+		map.put("/memberList.do", new MemberListControl());
 	}
 
 	@Override

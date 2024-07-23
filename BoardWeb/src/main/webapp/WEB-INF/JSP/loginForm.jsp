@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- loginForm.jsp -->
-<jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>로그인 화면</h3>
 <c:if test="${!empty msg }">
   <p>${msg }</p>
@@ -24,4 +23,3 @@
 		</tr>
 	</table>
 </form>
-<jsp:include page="../includes/footer.jsp"></jsp:include>

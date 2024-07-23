@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../includes/header.jsp"%>
 
 <h3>게시글목록</h3>
 <!-- 검색조건 영역 -->
@@ -86,4 +85,3 @@
   </ul>
 </nav>
 <!-- 페이지부분 -->
-<%@ include file="../includes/footer.jsp"%>

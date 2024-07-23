@@ -31,6 +31,8 @@
 		from tbl_board
 		order by board_no
 	</select>
+	
+	
 
 	<!-- 페이징 목록 -->
 	<select id="selectListPaging"
