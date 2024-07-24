@@ -5,11 +5,10 @@
 <mapper namespace="com.yedam.mapper.StudentMapper">
 
 	<select id="memberList" resultType="com.yedam.vo.MemberVO">
-		select member_id,
-		member_pw,
-		member_nm,
-		responsibility
+		select *
 		from tbl_member
+		where responsibility = #{res} 
+		order by ${order}
 	</select>
 
 	<select id="selectMember" resultType="com.yedam.vo.MemberVO">

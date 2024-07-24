@@ -42,4 +42,8 @@
 		<put-attribute name="body" value="/WEB-INF/adminJSP/{1}.jsp" />
 	</definition>
 	
+	<definition name="WILDCARD:*/*" extends="myapp.user">
+		<put-attribute name="body" value="/WEB-INF/JSP/{1}/{2}.jsp" />
+	</definition>
+	
 </tiles-definitions>

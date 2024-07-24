@@ -14,8 +14,7 @@ public interface StudentMapper {
 	StudentVO selectOne(String sno);
 	int insertStudent(StudentVO svo);
 	//맴버 반환
-	List<MemberVO> memberList();
+	List<MemberVO> memberList(@Param("res") String res, @Param("order") String order);
 	//로그인체크.
 	MemberVO selectMember(@Param("id") String id, @Param("pw") String pw);
-	
 }

@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.selectMember(id, pw);
 	}
 	@Override
-	public List<MemberVO> memberList(){
-		return mapper.memberList();
+	public List<MemberVO> memberList(String res, String order){
+		return mapper.memberList(res, order);
 	}
 }

@@ -15,11 +15,16 @@ import com.yedam.vo.MemberVO;
 public class MemberListControl implements Control {
 
 	@Override
-	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public void exec(HttpServletRequest req, HttpServletResponse resp) //
+			throws ServletException, IOException {
+		
+		String res = req.getParameter("res");
+		String order = req.getParameter("order");
+		res = res == null ? "user" : res;
+		order = order == null ? "member_id" : order;
 		
 		MemberService memList = new MemberServiceImpl();
-		List<MemberVO> memLi = memList.memberList(); 
+		List<MemberVO> memLi = memList.memberList(res, order); 
 		
 		req.setAttribute("memberList", memLi);
 		
