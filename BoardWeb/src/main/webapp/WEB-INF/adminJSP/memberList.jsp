@@ -8,7 +8,7 @@
     <a class="nav-link active" href="memberList.do?order=member_id&res=user">일반회원</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="memberList.do?order=member_id&res=admin">관리자</a>
+    <a class="nav-link" href="memberList.do?order=member_id&res=Admin">관리자</a>
   </li>
 </ul>
 </c:choose>

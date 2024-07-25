@@ -13,6 +13,7 @@ public interface StudentMapper {
 	List<StudentVO> studentList();
 	StudentVO selectOne(String sno);
 	int insertStudent(StudentVO svo);
+	int deleteStudent(String studentNo);
 	//맴버 반환
 	List<MemberVO> memberList(@Param("res") String res, @Param("order") String order);
 	//로그인체크.

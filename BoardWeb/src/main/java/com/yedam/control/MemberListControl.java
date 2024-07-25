@@ -20,7 +20,7 @@ public class MemberListControl implements Control {
 		
 		String res = req.getParameter("res");
 		String order = req.getParameter("order");
-		res = res == null ? "user" : res;
+		res = res == null ? "Admin" : res;
 		order = order == null ? "member_id" : order;
 		
 		MemberService memList = new MemberServiceImpl();
