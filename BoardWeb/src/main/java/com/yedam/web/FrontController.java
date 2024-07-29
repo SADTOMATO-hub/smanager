@@ -33,6 +33,7 @@ import com.yedam.control.ScriptContol;
 import com.yedam.control.StudentJson;
 import com.yedam.control.StudentListControl;
 import com.yedam.control.UpdateControl;
+import com.yedam.control.paginCountControl;
 
 /*
  * FrontController 역할은 사용자의 모든 요청을 처리
@@ -87,6 +88,8 @@ public class FrontController extends HttpServlet {
 		map.put("/addReply.do", new AddReplyControl());
 		//댓글삭제
 		map.put("/removeReply.do", new RemoveReplyControl());
+		//페이징을 위한 전체건수
+		map.put("/paginCount.do", new paginCountControl());
 	}
 
 	@Override

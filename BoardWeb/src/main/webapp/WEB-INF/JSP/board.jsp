@@ -71,9 +71,13 @@ div.reply span {
 			</li>
 		</ul>
 	</div>
-	<!-- 등록 -->
-	<!-- 삭제 -->
-	<!-- 댓글패이징 -->
+	<!-- 댓글페이징 -->
+    <div class="footer">
+        <nav aria-label="...">
+              <ul class="pagination">
+              </ul>
+        </nav>
+    </div>
 </div>
 <script>
 const bno = "${board.boardNo }";

@@ -8,4 +8,6 @@ public interface ReplyMapper {
 	List<ReplyVO> selectList(int boardNo);
 	int insertReply(ReplyVO rvo);
 	int deleteReply(int replyNO);
+	
+	int totalReplyCnt (int boardNo);
 }

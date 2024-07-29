@@ -15,6 +15,21 @@ const svc = {
 		xhtp.open('get', 'addReply.do?bno='+ param.bno + '&replyer=' + param.replyer + '&content=' + param.content );
 		xhtp.send();
 		xhtp.onload = loadCallback;
+	},
+	 //삭제
+    delReply(rno = 1, loadCallback) {
+        const xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'removeReply.do?rvo=' + rno);
+        xhtp.send();
+        xhtp.onload = loadCallback
+
+    },
+	//댓글갯수 파악
+	paginCount(bno = 1, loadCallback){
+		const xhtp = new XMLHttpRequest();
+		xhtp.open('get', 'pagingCount.do?bno='+ bno);
+		xhtp.send();
+		xhtp.onload = loadCallback;
 	}
 }//end svc
 

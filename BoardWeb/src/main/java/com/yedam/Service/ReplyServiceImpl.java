@@ -23,4 +23,8 @@ public class ReplyServiceImpl implements ReplyService{
 	public boolean removeReply(int replyNo) {
 		return mapper.deleteReply(replyNo)==1;
 	}
+	@Override
+	public int replyTotalCnt(int boardNo) {
+		return mapper.totalReplyCnt(boardNo);
+	}
 }
