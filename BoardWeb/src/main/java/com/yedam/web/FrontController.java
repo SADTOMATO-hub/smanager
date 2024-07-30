@@ -20,6 +20,7 @@ import com.yedam.control.BoardControl;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.DeleteFormControl;
+import com.yedam.control.ImageDownLoad;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginForm;
 import com.yedam.control.LogoutControl;
@@ -90,6 +91,8 @@ public class FrontController extends HttpServlet {
 		map.put("/removeReply.do", new RemoveReplyControl());
 		//페이징을 위한 전체건수
 		map.put("/paginCount.do", new paginCountControl());
+		//이미지 다운로드
+		map.put("/imageDownload.do", new ImageDownLoad());
 	}
 
 	@Override
