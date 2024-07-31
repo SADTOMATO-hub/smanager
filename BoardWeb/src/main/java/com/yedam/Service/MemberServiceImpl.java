@@ -1,6 +1,7 @@
 package com.yedam.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -34,4 +35,8 @@ public class MemberServiceImpl implements MemberService {
 	public boolean addStudent(StudentVO svo) {
 		return mapper.insertStudent(svo)==1;
 	}
+@Override
+public List<Map<String, Object>> getCountByMember() {
+	return mapper.selectCountMember();
+}
 }

@@ -2,16 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>맴버목록.memberList</h3>
-<c:choose>
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" href="memberList.do?order=member_id&res=user">일반회원</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="memberList.do?order=member_id&res=Admin">관리자</a>
-  </li>
-</ul>
-</c:choose>
 <table class="table table-hover">
 	<thead>
 		<tr>

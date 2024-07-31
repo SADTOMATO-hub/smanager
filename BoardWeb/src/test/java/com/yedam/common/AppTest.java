@@ -1,30 +1,23 @@
 package com.yedam.common;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import com.yedam.Service.ReplyService;
-import com.yedam.Service.ReplyServiceImpl;
-import com.yedam.mapper.ReplyMapper;
-import com.yedam.vo.ReplyVO;
+import com.yedam.Service.MemberService;
+import com.yedam.Service.MemberServiceImpl;
 
 public class AppTest {
 	public static void main(String[] args) {
-		SqlSession sqlSession = DataSource.getInstance().openSession(true);// 커밋
-		ReplyService svc = new ReplyServiceImpl();
-		
-		ReplyVO rvo = new ReplyVO();
-		rvo.setReplyContent("love");
-		rvo.setReplyer("user01");
-		rvo.setBoardNo(148);
-		
-		if(svc.removeReply(2)) {
-			System.out.println("처리완료");
-		}else {
-			System.out.println("처리실패");
+		MemberService svc = new MemberServiceImpl();
+		List<Map<String, Object>> list = svc.getCountByMember();
+		for(Map<String, Object> map : list) {
+			System.out.println("--------------------");
+			Set<String> keyset = map.keySet();
+			for(String key : keyset) {
+				System.out.println(key + ", " + map.get(key/*밸류*/));
+			}
 		}
-		
-		
-		svc.replyList(148).forEach(System.out::println);
-
+		System.out.println("완");
 	}
 }
