@@ -21,6 +21,7 @@
 			<otherwise>1 = 1</otherwise>
 		</choose>
 	</sql>
+	
 	<select id="selectList" resultType="com.yedam.vo.BoardVO">
 		select board_no
 		,title
@@ -91,8 +92,7 @@
 		,write_date
 		,image
 		from tbl_board
-		where board_no =
-		#{boardNO}
+		where board_no = #{boardNO}
 	</select>
 
 </mapper>

@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Access</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+	<script>
+		$(function() {
+			$("button").on("click", function() {
+				// id가 "list"인 요소의 자손 요소 중에서 <li>요소를 모두 선택한 후에,
+				// 그 중에서 두 번째 요소의 값을 설정함.
+				$("#list").find("li").eq(0).html("<b>첫 번째 아이템을 선택했어요!!</b>");
+			}); // end of 단건선택
+			
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>메소드 체이닝</h1>
+	<ul id="list">
+		<li>첫 번째 아이템이에요!</li>
+		<li>두 번째 아이템이에요!</li>
+		<li>세 번째 아이템이에요!</li>
+	</ul>
+	<button>텍스트 변경</button>
+	
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.yedam.control;
+ package com.yedam.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,6 @@ public class BoardListControl implements Control {
 		search.setSearchCondition(sc);
 		search.setKeyword(kw);
 		search.setPage(Integer.parseInt(page));
-		
 		 
 		req.setAttribute("myName", "토마토");
 		BoardService svc = new BoardServiceImpl();

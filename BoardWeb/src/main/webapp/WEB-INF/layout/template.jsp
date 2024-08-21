@@ -26,6 +26,7 @@
                 <div class="container-fluid">
                 <tiles:insertAttribute name="body" /> <!-- 여기가 바디 -->
                 </div>
+               
             </div>
         </div>
         <tiles:insertAttribute name="footer" /> <!-- 이곳이 푸터 -->
