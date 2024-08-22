@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-<style>
-div.reply ul {
-	list-style-type: none;
-}
-
-div.reply span {
-	display: inline-block;
-}
-</style>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
 
 <h3>게시판 상세(board.jsp)</h3>
 
@@ -59,37 +53,119 @@ div.reply span {
 <div class="container reply">
 	<!-- 목록 -->
 	<div class="header">
-		<input class="col-sm-8" id="content">
-		<button class="col-sm-3" id="addReply">댓글등록</button>
+		<input class="col-sm-6" id="content">
+		<button class="col-sm-2" id="addReply">댓글등록</button>
+		<button class="col-sm-2" id="deleteReply">댓글삭제</button>
 	</div>
-	<div class="content">
-		<ul id="replyList">
-			<li style = "display: none">
-			<span class="col-sm-3">12</span> 
-			<span class="col-sm-6">댓글내용입니다.</span>
-			<span class="col-sm-2">user02</span>
-			<span><button class="btn btn-danger" class="col-sm-2">삭제</button></span>
-			</li>
-		</ul>
-	</div>
-	<!-- 댓글페이징 -->
-    <div class="footer">
-        <nav aria-label="...">
-              <ul class="pagination">
-              </ul>
-        </nav>
-    </div>
+	<table id="example" class="display" style="width: 100%">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>내용</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>No</th>
+				<th>내용</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>삭제</th>
+			</tr>
+		</tfoot>
+	</table>
 </div>
 <script>
-const bno = "${board.boardNo }";
-const replyer = "${logid}";
+	const bno = "${board.boardNo }";
+	const replyer = "${logid}";
 	document.querySelector('form>table button.btn.btn-warning')
 			.addEventListener('click', function(e) {
 				location.href = 'modifyBoard.do?bno=${board.boardNo }';
 			});
+	let table = $('#example').DataTable({
+		ajax : 'replyList.do?bno=' + bno,
+		columns : [ {
+			data : 'replyNo'
+		}, {
+			data : 'replyContent'
+		}, {
+			data : 'replyer'
+		}, {
+			data : 'replyDate'
+		} ],
+		lengthMenu : [ [ 5, 10, 20, -1 ], [ 5, 10, 20, 'All' ] ],
+		 columnDefs: [
+		        {
+		            render: function (data, type, row) {
+		                return '<button onclick="deleteRow('+ $(this).html() +')" value="분쇄">';
+		            },
+		            targets: 4
+		        }]
+	});
+	//댓글등록
+	$('#addReply').on('click', function() {
+		$.ajax({
+			url : 'addReply.do',
+			data : {
+				replyer : replyer,
+				content : $('#content').val(),
+				bno : bno
+			},
+			dataType : 'json',
+			success : function(result) {
+				console.log(result);
+				let rvo = result.retval
+				table.row.add({
+					'replyNo' : rvo.replyNo,
+					'replyContent' : rvo.replyContent,
+					'replyer' : rvo.replyer,
+					'replyDate' : rvo.replyDate
+				}).draw(false)
+				$('#content').val('');
+			},
+			error : function(err) {
+				console.log(err)
+			}
+		})
+	})
+	//댓글삭제
+	let rno
+	$('#example').on('click', 'tr', function() {
+		if ($(this).hasClass('selected')) {
+			$(this).removeClass('selected');
+		} else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+			rno = $(this).children().first().html();
+		}
+	});
+	$('#deleteReply').click(function() {
+		$.ajax({
+			url : 'removeReply.do',
+			data : {
+				rno : rno
+			},
+			dataType : 'json',
+			success : function(result){
+		table.row('.selected').remove().draw(false);				
+			}
+		})
+	});
+	function deleteRow(rno){
+		$.ajax({
+			url : 'removeReply.do',
+			data : {
+				rno : rno
+			},
+			dataType : 'json',
+			success : function(result){
+		table.row('.selected').remove().draw(false);				
+			}
+		})
+	}
 </script>
-<!--  <script  src="js/boardService.js"></script> 
-<script  src="js/board.js"></script> -->
 
-<script src="js/boardJquery.js"></script>
 

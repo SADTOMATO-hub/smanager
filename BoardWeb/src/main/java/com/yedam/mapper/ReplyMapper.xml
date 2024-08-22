@@ -18,7 +18,7 @@
 		insert into tbl_reply (reply_no, reply_content, replyer, board_no)
 		values(#{replyNo}, #{replyContent}, #{replyer}, #{boardNo})
 	</insert>
-	<delete id="deleteReply">
+	<delete id="deleteReply" parameterType="int">
 		DELETE from tbl_reply
 		where reply_no = #{replyNo}
 	</delete>

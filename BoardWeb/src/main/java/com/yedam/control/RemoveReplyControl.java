@@ -16,6 +16,7 @@ public class RemoveReplyControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String replyNo = req.getParameter("rno");
+		String bno = req.getParameter("bno");
 		ReplyService rsv = new ReplyServiceImpl();
 	//	rsv.removeReply(Integer.parseInt(replyNo));
 		

@@ -1,6 +1,7 @@
 package com.yedam.control;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,14 +24,16 @@ public class AddReplyControl implements Control {
 		String writer = req.getParameter("replyer");
 		String content = req.getParameter("content");
 		String bno = req.getParameter("bno");
+		//Date date = req.getParameter("date");
 
 		ReplyVO rvo = new ReplyVO();
 		rvo.setBoardNo(Integer.parseInt(bno));
 		rvo.setReplyer(writer);
 		rvo.setReplyContent(content);
+		rvo.setReplyDate(new Date());
 
 		ReplyService svc = new ReplyServiceImpl();
-		svc.addReply(rvo);
+		//svc.addReply(rvo);
 
 		// retCode : Success, retVal:ReplyVO
 		// retCode : Fail, retVal:null

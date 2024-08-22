@@ -12,7 +12,7 @@ public class ReplyServiceImpl implements ReplyService{
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
+	public List<ReplyVO> selectList(int boardNo) {
 		return mapper.selectList(boardNo);
 	}
 	@Override
